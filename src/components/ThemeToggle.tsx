@@ -1,72 +1,102 @@
 import Feather from "@expo/vector-icons/Feather";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import {useEffect, useRef} from "react";
-import {
-  Animated,
-  Pressable,
-  View,
-  useColorScheme as useDeviceColorScheme,
-} from "react-native";
-import {useTheme} from "../providers/ThemeProvider";
+import {Animated, Pressable, View} from "react-native";
+import {Uniwind, useUniwind} from "uniwind";
 
 type ThemeMode = "light" | "system" | "dark";
 
 const MODES: ThemeMode[] = ["light", "system", "dark"];
-const BUTTON_SIZE = 44; // padding 12 * 2 + icon 20
+const BUTTON_SIZE = 44;
 const GAP = 4;
+const PILL_LIGHT = "#ffffff";
+const PILL_DARK = "#52525b";
 
 const ThemeToggle = () => {
-  const {theme, setTheme} = useTheme();
-  const deviceTheme = useDeviceColorScheme() ?? "light";
-  const resolvedTheme = theme === "system" ? deviceTheme : theme;
+  const {theme, hasAdaptiveThemes} = useUniwind();
 
-  const slideAnim = useRef(new Animated.Value(MODES.indexOf(theme))).current;
+  // "system" when adaptive, otherwise the resolved "light" | "dark"
+  const activeTheme = (hasAdaptiveThemes ? "system" : theme) as ThemeMode;
+  // theme from useUniwind is always the resolved light/dark — use for colors
+  const resolvedTheme = theme;
+
+  const setTheme = (mode: ThemeMode) => {
+    Uniwind.setTheme(mode);
+    AsyncStorage.setItem("theme", mode);
+  };
+
+  // Pill POSITION — driven by activeTheme so "system" slot is reached
+  const slideAnim = useRef(
+    new Animated.Value(MODES.indexOf(activeTheme)),
+  ).current;
+
+  // Pill COLOR — driven by resolvedTheme (always light or dark)
+  const colorAnim = useRef(
+    new Animated.Value(resolvedTheme === "dark" ? 1 : 0),
+  ).current;
 
   useEffect(() => {
     Animated.spring(slideAnim, {
-      toValue: MODES.indexOf(theme),
+      toValue: MODES.indexOf(activeTheme),
       useNativeDriver: true,
       tension: 180,
       friction: 18,
     }).start();
-  }, [theme]);
+  }, [activeTheme]); // activeTheme changes when toggling system on/off
 
-  // Single pill bg: white in light context, zinc-600 in dark context
-  const pillBg = resolvedTheme === "dark" ? "#52525b" : "#ffffff";
-
-  // Per-icon color: active = themed, inactive = gray
-  const getIconColor = (mode: ThemeMode) => {
-    if (theme !== mode) return "#9ca3af"; // gray-400
-    return resolvedTheme === "dark" ? "#ffffff" : "#000000";
-  };
+  useEffect(() => {
+    Animated.timing(colorAnim, {
+      toValue: resolvedTheme === "dark" ? 1 : 0,
+      duration: 250,
+      useNativeDriver: false, // backgroundColor can't use native driver
+    }).start();
+  }, [resolvedTheme]); // resolvedTheme changes when actual light/dark flips
 
   const pillTranslateX = slideAnim.interpolate({
     inputRange: [0, 1, 2],
     outputRange: [0, BUTTON_SIZE + GAP, (BUTTON_SIZE + GAP) * 2],
   });
 
+  const pillBgColor = colorAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [PILL_LIGHT, PILL_DARK],
+  });
+
+  const getIconColor = (mode: ThemeMode) => {
+    if (activeTheme !== mode) return "#9ca3af"; // inactive — gray
+    // active icon color based on resolved light/dark
+    return resolvedTheme === "dark" ? "#ffffff" : "#000000";
+  };
+
   return (
     <View
       style={{position: "relative"}}
       className="flex-row bg-stone-300 dark:bg-zinc-800 p-1 rounded-full items-center"
     >
-      {/* Sliding pill — sits behind all buttons */}
+      {/* OUTER: translate only — native driver */}
       <Animated.View
         style={{
           position: "absolute",
-          left: 4, // matches parent p-1
+          left: 4,
           width: BUTTON_SIZE,
           height: BUTTON_SIZE,
-          borderRadius: 9999,
-          backgroundColor: pillBg,
           transform: [{translateX: pillTranslateX}],
-          // shadow
-          elevation: 2,
-          shadowColor: "#000",
-          shadowOffset: {width: 0, height: 1},
-          shadowOpacity: 0.12,
-          shadowRadius: 2,
         }}
-      />
+      >
+        {/* INNER: backgroundColor only — JS driver, separate node */}
+        <Animated.View
+          style={{
+            flex: 1,
+            borderRadius: 9999,
+            backgroundColor: pillBgColor,
+            elevation: 2,
+            shadowColor: "#000",
+            shadowOffset: {width: 0, height: 1},
+            shadowOpacity: 0.12,
+            shadowRadius: 2,
+          }}
+        />
+      </Animated.View>
 
       {MODES.map((mode, index) => (
         <Pressable
@@ -79,7 +109,6 @@ const ThemeToggle = () => {
             alignItems: "center",
             justifyContent: "center",
             marginLeft: index === 0 ? 0 : GAP,
-            // no background here — pill handles it
           }}
         >
           <Feather

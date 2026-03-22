@@ -52,7 +52,7 @@ export default {
         : `com.singhxayush.${normalizedAppName}`,
     },
     web: {
-      bundler: "metro",
+      // bundler: "metro",
       output: "static",
       favicon: "./assets/images/favicon.png",
     },
