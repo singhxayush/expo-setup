@@ -1,11 +1,11 @@
-// ThemeProvider.tsx
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {StatusBar} from "expo-status-bar";
-import {colorScheme} from "nativewind";
 import React, {createContext, useContext, useEffect, useState} from "react";
-import {Appearance, View} from "react-native";
+import {View} from "react-native";
+import {Uniwind, useUniwind} from "uniwind";
 
 type ThemeMode = "light" | "dark" | "system";
+
 type ThemeContextType = {
   theme: ThemeMode;
   setTheme: (mode: ThemeMode) => void;
@@ -16,33 +16,45 @@ export const ThemeContext = createContext<ThemeContextType>({
   setTheme: () => {},
 });
 
+// Inner component so we can use the useUniwind hook
+const ThemeProviderInner = ({children}: {children: React.ReactNode}) => {
+  const {theme, hasAdaptiveThemes} = useUniwind();
+
+  // Resolve the actual light/dark for StatusBar
+  // hasAdaptiveThemes = true means system mode is active
+  const activeTheme = hasAdaptiveThemes ? "system" : theme;
+  const resolvedTheme = activeTheme === "system" ? theme : activeTheme;
+
+  return (
+    <>
+      <StatusBar style={resolvedTheme === "dark" ? "light" : "dark"} />
+      {/* bg-background already resolves to light/dark value via CSS vars */}
+      <View className="flex-1 bg-background">{children}</View>
+    </>
+  );
+};
+
 export const ThemeProvider = ({children}: {children: React.ReactNode}) => {
   const [currentTheme, setCurrentTheme] = useState<ThemeMode>("system");
 
+  // Load persisted theme on mount
   useEffect(() => {
     AsyncStorage.getItem("theme").then((saved) => {
       const mode = (saved as ThemeMode) ?? "system";
       setCurrentTheme(mode);
-      colorScheme.set(mode); // ← this is the only thing NativeWind needs
+      Uniwind.setTheme(mode);
     });
   }, []);
 
   const setTheme = async (newTheme: ThemeMode) => {
     setCurrentTheme(newTheme);
-    colorScheme.set(newTheme); // ← NativeWind switches dark: variants here
+    Uniwind.setTheme(newTheme);
     await AsyncStorage.setItem("theme", newTheme);
   };
 
-  const systemPref = Appearance.getColorScheme() ?? "light";
-  const resolvedTheme = currentTheme === "system" ? systemPref : currentTheme;
-
   return (
     <ThemeContext.Provider value={{theme: currentTheme, setTheme}}>
-      <StatusBar style={resolvedTheme === "dark" ? "light" : "dark"} />
-      {/* No style prop here — let NativeWind's colorScheme drive dark: variants */}
-      <View className="flex-1 bg-background dark:bg-dark-background">
-        {children}
-      </View>
+      <ThemeProviderInner>{children}</ThemeProviderInner>
     </ThemeContext.Provider>
   );
 };

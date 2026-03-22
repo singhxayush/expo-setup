@@ -4,9 +4,10 @@
   "version": "1.0.0",
   "scripts": {
     "start": "cross-env APP_ENV=development expo start",
-    "android:dev": "cross-env APP_ENV=development expo prebuild --clean && cross-env APP_ENV=development expo run:android",
-    "android:release": "cross-env APP_ENV=production expo prebuild --clean && cross-env APP_ENV=production expo run:android --variant release",
-    "ios": "expo run:ios",
+    "android:dev": "cross-env APP_ENV=development expo prebuild --platform android --clean && cross-env APP_ENV=development expo run:android",
+    "android:release": "cross-env APP_ENV=production expo prebuild --platform android --clean && cross-env APP_ENV=production expo run:android --variant release",
+    "ios:dev": "cross-env APP_ENV=development expo prebuild --platform ios --clean && cross-env APP_ENV=development expo run:ios",
+    "ios:release": "cross-env APP_ENV=production expo prebuild --platform ios --clean && cross-env APP_ENV=production expo run:ios --configuration Release",
     "web": "expo start --web",
     "lint": "expo lint"
   },
@@ -30,7 +31,6 @@
     "expo-symbols": "~55.0.5",
     "expo-system-ui": "~55.0.10",
     "expo-web-browser": "~55.0.10",
-    "nativewind": "^4.2.3",
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "react-native": "0.83.2",
@@ -39,14 +39,13 @@
     "react-native-safe-area-context": "^5.7.0",
     "react-native-screens": "~4.23.0",
     "react-native-web": "~0.21.0",
-    "react-native-worklets": "0.7.2"
+    "react-native-worklets": "0.7.2",
+    "tailwindcss": "^4.2.2",
+    "uniwind": "^1.6.0"
   },
   "devDependencies": {
     "@types/react": "~19.2.2",
-    "babel-preset-expo": "^55.0.12",
     "cross-env": "^10.1.0",
-    "prettier-plugin-tailwindcss": "^0.5.11",
-    "tailwindcss": "^3.4.17",
     "typescript": "~5.9.2"
   },
   "private": true
