@@ -25,10 +25,10 @@ export default function Index() {
         style={{
           paddingTop: 20,
         }}
-        href={"/animate"}
+        href={"/fonts"}
         className="text-blue-300 underline"
       >
-        First Animation 2
+        Different kinda Fonts
       </Link>
 
       <Link

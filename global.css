@@ -44,3 +44,66 @@
     }
   }
 }
+
+@theme {
+  /* JetBrainsMono */
+  --font-mono-thin: JetBrainsMono_100Thin;
+  --font-mono-extralight: JetBrainsMono_200ExtraLight;
+  --font-mono-light: JetBrainsMono_300Light;
+  --font-mono: JetBrainsMono_400Regular;
+  --font-mono-medium: JetBrainsMono_500Medium;
+  --font-mono-semibold: JetBrainsMono_600SemiBold;
+  --font-mono-bold: JetBrainsMono_700Bold;
+  --font-mono-extrabold: JetBrainsMono_800ExtraBold;
+  /* JetBrainsMono Italic */
+  --font-mono-thin-italic: JetBrainsMono_100Thin_Italic;
+  --font-mono-extralight-italic: JetBrainsMono_200ExtraLight_Italic;
+  --font-mono-light-italic: JetBrainsMono_300Light_Italic;
+  --font-mono-italic: JetBrainsMono_400Regular_Italic;
+  --font-mono-medium-italic: JetBrainsMono_500Medium_Italic;
+  --font-mono-semibold-italic: JetBrainsMono_600SemiBold_Italic;
+  --font-mono-bold-italic: JetBrainsMono_700Bold_Italic;
+  --font-mono-extrabold-italic: JetBrainsMono_800ExtraBold_Italic;
+  /* PlayfairDisplay */
+  --font-serif: PlayfairDisplay_400Regular;
+  --font-serif-medium: PlayfairDisplay_500Medium;
+  --font-serif-semibold: PlayfairDisplay_600SemiBold;
+  --font-serif-bold: PlayfairDisplay_700Bold;
+  --font-serif-extrabold: PlayfairDisplay_800ExtraBold;
+  --font-serif-black: PlayfairDisplay_900Black;
+  /* PlayfairDisplay Italic */
+  --font-serif-italic: PlayfairDisplay_400Regular_Italic;
+  --font-serif-medium-italic: PlayfairDisplay_500Medium_Italic;
+  --font-serif-semibold-italic: PlayfairDisplay_600SemiBold_Italic;
+  --font-serif-bold-italic: PlayfairDisplay_700Bold_Italic;
+  --font-serif-extrabold-italic: PlayfairDisplay_800ExtraBold_Italic;
+  --font-serif-black-italic: PlayfairDisplay_900Black_Italic;
+  /* Inter */
+  --font-sans-thin: Inter_100Thin;
+  --font-sans-extralight: Inter_200ExtraLight;
+  --font-sans-light: Inter_300Light;
+  --font-sans: Inter_400Regular;
+  --font-sans-medium: Inter_500Medium;
+  --font-sans-semibold: Inter_600SemiBold;
+  --font-sans-bold: Inter_700Bold;
+  --font-sans-extrabold: Inter_800ExtraBold;
+  --font-sans-black: Inter_900Black;
+  /* Inter Italic */
+  --font-sans-thin-italic: Inter_100Thin_Italic;
+  --font-sans-extralight-italic: Inter_200ExtraLight_Italic;
+  --font-sans-light-italic: Inter_300Light_Italic;
+  --font-sans-italic: Inter_400Regular_Italic;
+  --font-sans-medium-italic: Inter_500Medium_Italic;
+  --font-sans-semibold-italic: Inter_600SemiBold_Italic;
+  --font-sans-bold-italic: Inter_700Bold_Italic;
+  --font-sans-extrabold-italic: Inter_800ExtraBold_Italic;
+  --font-sans-black-italic: Inter_900Black_Italic;
+  /* MaterialSymbols */
+  --font-material-symbols-thin: MaterialSymbols_100Thin;
+  --font-material-symbols-extralight: MaterialSymbols_200ExtraLight;
+  --font-material-symbols-light: MaterialSymbols_300Light;
+  --font-material-symbols: MaterialSymbols_400Regular;
+  --font-material-symbols-medium: MaterialSymbols_500Medium;
+  --font-material-symbols-semibold: MaterialSymbols_600SemiBold;
+  --font-material-symbols-bold: MaterialSymbols_700Bold;
+}
