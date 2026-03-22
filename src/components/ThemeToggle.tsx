@@ -1,5 +1,6 @@
 import Feather from "@expo/vector-icons/Feather";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as Haptics from "expo-haptics";
 import {useEffect, useRef} from "react";
 import {Animated, Pressable, View} from "react-native";
 import {Uniwind, useUniwind} from "uniwind";
@@ -101,7 +102,14 @@ const ThemeToggle = () => {
       {MODES.map((mode, index) => (
         <Pressable
           key={mode}
-          onPress={() => setTheme(mode)}
+          onPress={() => {
+            Haptics.performAndroidHapticsAsync(
+              Haptics.AndroidHaptics.Segment_Tick,
+            );
+
+            if (activeTheme === mode) return;
+            setTheme(mode);
+          }}
           style={{
             width: BUTTON_SIZE,
             height: BUTTON_SIZE,
