@@ -16,7 +16,7 @@ import {useState} from "react";
 import {View} from "react-native";
 import {KeyboardAwareScrollView} from "react-native-keyboard-controller";
 
-export default function ComponentsTestPage() {
+const Index = () => {
   const [inputValue, setInputValue] = useState("");
 
   return (
@@ -226,4 +226,6 @@ export default function ComponentsTestPage() {
       </View>
     </KeyboardAwareScrollView>
   );
-}
+};
+
+export default Index;
