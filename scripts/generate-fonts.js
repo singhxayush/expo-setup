@@ -1,3 +1,6 @@
+// Works with @expo-fonts only, first install the required expo fonts
+// then run this script to generate config (app.config.ts -> font plugin) and css varians (global.css)
+
 import fs from "fs";
 import path from "path";
 

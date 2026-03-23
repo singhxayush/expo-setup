@@ -4,10 +4,13 @@
 @layer theme {
   :root {
     @variant light {
+      /* Uniwind utilities — bg-background, text-foreground etc. */
       --color-background: #e9e4d8;
       --color-foreground: #1e1e1e;
       --color-card: #f4efe4;
       --color-card-foreground: #1e1e1e;
+      --color-popover: #f4efe4;
+      --color-popover-foreground: #1e1e1e;
       --color-primary: #2e2e2e;
       --color-primary-foreground: #e6e4d7;
       --color-secondary: #d8d2c4;
@@ -21,13 +24,38 @@
       --color-border: #d2cbbb;
       --color-input: #d2cbbb;
       --color-ring: #2e2e2e;
+
+      /* RN Reusables internal variables — bare names, no --color- prefix */
+      --background: 45 27% 87%;
+      --foreground: 0 0% 12%;
+      --card: 40 43% 93%;
+      --card-foreground: 0 0% 12%;
+      --popover: 40 43% 93%;
+      --popover-foreground: 0 0% 12%;
+      --primary: 0 0% 18%;
+      --primary-foreground: 45 27% 87%;
+      --secondary: 38 18% 80%;
+      --secondary-foreground: 0 0% 18%;
+      --muted: 38 18% 77%;
+      --muted-foreground: 35 8% 34%;
+      --accent: 45 27% 87%;
+      --accent-foreground: 0 0% 18%;
+      --destructive: 0 72% 51%;
+      --destructive-foreground: 0 0% 100%;
+      --border: 37 18% 77%;
+      --input: 37 18% 77%;
+      --ring: 0 0% 18%;
+      --radius: 0.5rem;
     }
 
     @variant dark {
+      /* Uniwind utilities */
       --color-background: #141414;
       --color-foreground: #e8e3da;
       --color-card: #1c1c1c;
       --color-card-foreground: #e8e3da;
+      --color-popover: #1c1c1c;
+      --color-popover-foreground: #e8e3da;
       --color-primary: #d1cfc0;
       --color-primary-foreground: #363636;
       --color-secondary: #222222;
@@ -41,6 +69,28 @@
       --color-border: #2c2c2c;
       --color-input: #2c2c2c;
       --color-ring: #d1cfc0;
+
+      /* RN Reusables internal variables */
+      --background: 0 0% 8%;
+      --foreground: 36 14% 85%;
+      --card: 0 0% 11%;
+      --card-foreground: 36 14% 85%;
+      --popover: 0 0% 11%;
+      --popover-foreground: 36 14% 85%;
+      --primary: 36 14% 85%;
+      --primary-foreground: 0 0% 21%;
+      --secondary: 0 0% 13%;
+      --secondary-foreground: 36 14% 85%;
+      --muted: 0 0% 16%;
+      --muted-foreground: 35 5% 52%;
+      --accent: 0 0% 21%;
+      --accent-foreground: 36 14% 85%;
+      --destructive: 0 84% 60%;
+      --destructive-foreground: 0 0% 100%;
+      --border: 0 0% 17%;
+      --input: 0 0% 17%;
+      --ring: 36 14% 85%;
+      --radius: 0.5rem;
     }
   }
 }

@@ -16,7 +16,7 @@ export default function Index() {
           paddingTop: 20,
         }}
         href={"/animate"}
-        className="text-blue-300 underline"
+        className="text-cyan-700 dark:text-cyan-400 underline"
       >
         First Animation
       </Link>
@@ -26,7 +26,7 @@ export default function Index() {
           paddingTop: 20,
         }}
         href={"/fonts"}
-        className="text-blue-300 underline"
+        className="text-cyan-700 dark:text-cyan-400 underline"
       >
         Different kinda Fonts
       </Link>
@@ -37,7 +37,7 @@ export default function Index() {
           paddingBottom: 40,
         }}
         href={"/shadcn"}
-        className="text-blue-300 underline"
+        className="text-cyan-700 dark:text-cyan-400 underline"
       >
         Shadcn Like component
       </Link>
