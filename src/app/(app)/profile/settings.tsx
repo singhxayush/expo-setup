@@ -2,11 +2,11 @@
 import ThemeToggle from "@/components/ThemeToggle";
 import {Separator} from "@/components/ui/separator";
 import {Text} from "@/components/ui/text";
-import {THEME} from "@/lib/theme";
+import {useThemeColors} from "@/lib/theme";
 import Feather from "@expo/vector-icons/Feather";
 import {router} from "expo-router";
 import {ReactNode, useState} from "react";
-import {Pressable, ScrollView, useColorScheme, View} from "react-native";
+import {Pressable, ScrollView, View} from "react-native";
 import {useSafeAreaInsets} from "react-native-safe-area-context";
 
 // --- Types ---
@@ -125,8 +125,7 @@ const SETTINGS_SECTIONS: SettingsSection[] = [
 
 export default function SettingsScreen() {
   const insets = useSafeAreaInsets();
-  const scheme = useColorScheme();
-  const colors = THEME[scheme === "dark" ? "dark" : "light"];
+  const colors = useThemeColors();
 
   const [expandedItems, setExpandedItems] = useState<Record<string, boolean>>(
     {},

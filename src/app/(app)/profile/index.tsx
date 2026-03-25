@@ -2,16 +2,15 @@
 import {Card, CardContent} from "@/components/ui/card";
 import {Separator} from "@/components/ui/separator";
 import {Text} from "@/components/ui/text";
-import {THEME} from "@/lib/theme";
+import { useThemeColors } from "@/lib/theme";
 import Feather from "@expo/vector-icons/Feather";
 import {router} from "expo-router";
-import {Image, Pressable, ScrollView, useColorScheme, View} from "react-native";
+import {Image, Pressable, ScrollView, View} from "react-native";
 import {useSafeAreaInsets} from "react-native-safe-area-context";
 
 export default function ProfileScreen() {
   const insets = useSafeAreaInsets();
-  const scheme = useColorScheme();
-  const colors = THEME[scheme === "dark" ? "dark" : "light"];
+  const colors = useThemeColors();
 
   return (
     <ScrollView

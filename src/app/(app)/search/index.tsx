@@ -24,7 +24,7 @@ const Index = () => {
       className="flex-1 bg-background"
       bottomOffset={16} // extra space between input and keyboard top edge
     >
-      <View className="p-4 gap-8 pt-20">
+      <View className="p-4 gap-8">
         {/* ── BADGES ── */}
         <View className="gap-2">
           <Text className="text-foreground font-sans-semibold text-lg">

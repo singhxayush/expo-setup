@@ -1,57 +1,62 @@
 import {DarkTheme, DefaultTheme, type Theme} from "@react-navigation/native";
+import {useUniwind} from "uniwind";
 
-export const THEME = {
+const THEME = {
   light: {
-    background: "hsl(0 0% 100%)",
-    foreground: "hsl(0 0% 3.9%)",
-    card: "hsl(0 0% 100%)",
-    cardForeground: "hsl(0 0% 3.9%)",
-    popover: "hsl(0 0% 100%)",
-    popoverForeground: "hsl(0 0% 3.9%)",
-    primary: "hsl(0 0% 9%)",
-    primaryForeground: "hsl(0 0% 98%)",
-    secondary: "hsl(0 0% 96.1%)",
-    secondaryForeground: "hsl(0 0% 9%)",
-    muted: "hsl(0 0% 96.1%)",
-    mutedForeground: "hsl(0 0% 45.1%)",
-    accent: "hsl(0 0% 96.1%)",
-    accentForeground: "hsl(0 0% 9%)",
-    destructive: "hsl(0 84.2% 60.2%)",
-    border: "hsl(0 0% 89.8%)",
-    input: "hsl(0 0% 89.8%)",
-    ring: "hsl(0 0% 63%)",
-    radius: "0.625rem",
-    chart1: "hsl(12 76% 61%)",
-    chart2: "hsl(173 58% 39%)",
-    chart3: "hsl(197 37% 24%)",
-    chart4: "hsl(43 74% 66%)",
-    chart5: "hsl(27 87% 67%)",
+    background: "hsl(42.3529 27.8689% 88.0392%)",
+    foreground: "hsl(0 0% 11.7647%)",
+    card: "hsl(41.2500 42.1053% 92.5490%)",
+    cardForeground: "hsl(0 0% 11.7647%)",
+    popover: "hsl(41.2500 42.1053% 92.5490%)",
+    popoverForeground: "hsl(0 0% 11.7647%)",
+    primary: "hsl(0 0% 18.0392%)",
+    primaryForeground: "hsl(52.0000 23.0769% 87.2549%)",
+    secondary: "hsl(42.0000 20.4082% 80.7843%)",
+    secondaryForeground: "hsl(0 0% 18.0392%)",
+    muted: "hsl(41.7391 19.3277% 76.6667%)",
+    mutedForeground: "hsl(40 6.8182% 34.5098%)",
+    accent: "hsl(52.0000 23.0769% 87.2549%)",
+    accentForeground: "hsl(0 0% 18.0392%)",
+    destructive: "hsl(0 72.2222% 50.5882%)",
+    destructiveForeground: "hsl(0 0% 100%)",
+    border: "hsl(41.7391 20.3540% 77.8431%)",
+    input: "hsl(41.7391 20.3540% 77.8431%)",
+    ring: "hsl(0 0% 18.0392%)",
+    radius: "0.5rem",
+    chart1: "hsl(11.1377 86.5285% 62.1569%)",
+    chart2: "hsl(0 0% 11.7647%)",
+    chart3: "hsl(40 6.8182% 34.5098%)",
+    chart4: "hsl(38.4000 12.5628% 60.9804%)",
+    chart5: "hsl(41.7391 19.3277% 76.6667%)",
+    sidebar: "hsl(42.0000 26.3158% 85.0980%)",
   },
   dark: {
-    background: "hsl(0 0% 3.9%)",
-    foreground: "hsl(0 0% 98%)",
-    card: "hsl(0 0% 3.9%)",
-    cardForeground: "hsl(0 0% 98%)",
-    popover: "hsl(0 0% 3.9%)",
-    popoverForeground: "hsl(0 0% 98%)",
-    primary: "hsl(0 0% 98%)",
-    primaryForeground: "hsl(0 0% 9%)",
-    secondary: "hsl(0 0% 14.9%)",
-    secondaryForeground: "hsl(0 0% 98%)",
-    muted: "hsl(0 0% 14.9%)",
-    mutedForeground: "hsl(0 0% 63.9%)",
-    accent: "hsl(0 0% 14.9%)",
-    accentForeground: "hsl(0 0% 98%)",
-    destructive: "hsl(0 70.9% 59.4%)",
-    border: "hsl(0 0% 14.9%)",
-    input: "hsl(0 0% 14.9%)",
-    ring: "hsl(300 0% 45%)",
-    radius: "0.625rem",
-    chart1: "hsl(220 70% 50%)",
-    chart2: "hsl(160 60% 45%)",
-    chart3: "hsl(30 80% 55%)",
-    chart4: "hsl(280 65% 60%)",
-    chart5: "hsl(340 75% 55%)",
+    background: "hsl(0 0% 7.8431%)",
+    foreground: "hsl(38.5714 23.3333% 88.2353%)",
+    card: "hsl(0 0% 10.9804%)",
+    cardForeground: "hsl(38.5714 23.3333% 88.2353%)",
+    popover: "hsl(0 0% 10.9804%)",
+    popoverForeground: "hsl(38.5714 23.3333% 88.2353%)",
+    primary: "hsl(52.9412 15.5963% 78.6275%)",
+    primaryForeground: "hsl(0 0% 21.1765%)",
+    secondary: "hsl(0 0% 13.3333%)",
+    secondaryForeground: "hsl(52.9412 15.5963% 78.6275%)",
+    muted: "hsl(0 0% 16.4706%)",
+    mutedForeground: "hsl(38.1818 4.6414% 53.5294%)",
+    accent: "hsl(0 0% 21.1765%)",
+    accentForeground: "hsl(52.9412 15.5963% 78.6275%)",
+    destructive: "hsl(0 84.2365% 60.1961%)",
+    destructiveForeground: "hsl(0 0% 100%)",
+    border: "hsl(0 0% 17.2549%)",
+    input: "hsl(0 0% 17.2549%)",
+    ring: "hsl(52.9412 15.5963% 78.6275%)",
+    radius: "0.5rem",
+    chart1: "hsl(11.1377 86.5285% 62.1569%)",
+    chart2: "hsl(33.9130 23.2323% 80.5882%)",
+    chart3: "hsl(38.1818 4.6414% 53.5294%)",
+    chart4: "hsl(40.0000 3.3708% 34.9020%)",
+    chart5: "hsl(0 0% 23.1373%)",
+    sidebar: "hsl(0 0% 6.2745%)",
   },
 };
 
@@ -79,3 +84,16 @@ export const NAV_THEME: Record<"light" | "dark", Theme> = {
     },
   },
 };
+
+function useResolvedScheme(): "light" | "dark" {
+  const {theme} = useUniwind();
+  return theme === "dark" ? "dark" : "light";
+}
+
+export function useThemeColors() {
+  return THEME[useResolvedScheme()];
+}
+
+export function useNavThemeColors() {
+  return NAV_THEME[useResolvedScheme()];
+}

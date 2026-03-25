@@ -10,8 +10,8 @@ type ThemeMode = "light" | "system" | "dark";
 const MODES: ThemeMode[] = ["light", "system", "dark"];
 const BUTTON_SIZE = 44;
 const GAP = 4;
-const PILL_LIGHT = "#ffffff";
-const PILL_DARK = "#52525b";
+const PILL_LIGHT = "#e9e4d8";
+const PILL_DARK = "#141414";
 
 const ThemeToggle = () => {
   const {theme, hasAdaptiveThemes} = useUniwind();
@@ -43,7 +43,7 @@ const ThemeToggle = () => {
       tension: 180,
       friction: 18,
     }).start();
-  }, [activeTheme]); // activeTheme changes when toggling system on/off
+  }, [activeTheme, slideAnim]); // activeTheme changes when toggling system on/off
 
   useEffect(() => {
     Animated.timing(colorAnim, {
@@ -51,7 +51,7 @@ const ThemeToggle = () => {
       duration: 250,
       useNativeDriver: false, // backgroundColor can't use native driver
     }).start();
-  }, [resolvedTheme]); // resolvedTheme changes when actual light/dark flips
+  }, [colorAnim, resolvedTheme]); // resolvedTheme changes when actual light/dark flips
 
   const pillTranslateX = slideAnim.interpolate({
     inputRange: [0, 1, 2],

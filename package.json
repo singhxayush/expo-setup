@@ -9,7 +9,8 @@
     "ios:dev": "cross-env APP_ENV=development expo prebuild --platform ios --clean && cross-env APP_ENV=development expo run:ios",
     "ios:release": "cross-env APP_ENV=production expo prebuild --platform ios --clean && cross-env APP_ENV=production expo run:ios --configuration Release",
     "web": "expo start --web",
-    "lint": "expo lint"
+    "lint": "expo lint",
+    "expo-doctor": "bunx expo-doctor --verbose"
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.4.2",
@@ -25,6 +26,7 @@
     "@rn-primitives/separator": "^1.2.0",
     "@rn-primitives/slot": "^1.2.0",
     "@rn-primitives/tooltip": "^1.2.0",
+    "@shopify/flash-list": "^2.3.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "expo": "~55.0.8",
@@ -50,7 +52,7 @@
     "react-native-gesture-handler": "~2.30.0",
     "react-native-keyboard-controller": "1.20.7",
     "react-native-reanimated": "4.2.1",
-    "react-native-safe-area-context": "^5.7.0",
+    "react-native-safe-area-context": "~5.6.2",
     "react-native-screens": "~4.23.0",
     "react-native-svg": "15.15.3",
     "react-native-web": "~0.21.0",
@@ -63,6 +65,8 @@
   "devDependencies": {
     "@types/react": "~19.2.2",
     "cross-env": "^10.1.0",
+    "eslint": "^9.0.0",
+    "eslint-config-expo": "~55.0.0",
     "typescript": "~5.9.2"
   },
   "private": true
