@@ -1,7 +1,6 @@
 import {useThemeColors} from "@/lib/theme";
 import {cn} from "@/lib/utils";
 import Feather from "@expo/vector-icons/Feather";
-import type {BottomTabBarProps} from "@react-navigation/bottom-tabs";
 import {Tabs} from "expo-router";
 import {type ComponentProps} from "react";
 import {Pressable, View} from "react-native";
@@ -13,7 +12,9 @@ const icons: ComponentProps<typeof Feather>["name"][] = [
   "user",
 ];
 
-function FloatingTabBar({state, navigation}: BottomTabBarProps) {
+type TabBarProps = Parameters<NonNullable<ComponentProps<typeof Tabs>["tabBar"]>>[0];
+
+function FloatingTabBar({state, navigateToTab}: TabBarProps) {
   const insets = useSafeAreaInsets();
   const colors = useThemeColors();
 
@@ -44,7 +45,7 @@ function FloatingTabBar({state, navigation}: BottomTabBarProps) {
         return (
           <Pressable
             key={route.key}
-            onPress={() => navigation.navigate(route.name)}
+            onPress={() => navigateToTab(route.key)}
             style={{alignItems: "center", justifyContent: "center"}}
             className={cn("size-10 rounded-2xl", isFocused && "bg-zinc-400/20")}
           >

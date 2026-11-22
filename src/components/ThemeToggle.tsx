@@ -1,7 +1,7 @@
 import Feather from "@expo/vector-icons/Feather";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Haptics from "expo-haptics";
-import {useEffect, useRef} from "react";
+import {useEffect, useState} from "react";
 import {Animated, Pressable, View} from "react-native";
 import {Uniwind, useUniwind} from "uniwind";
 
@@ -27,14 +27,14 @@ const ThemeToggle = () => {
   };
 
   // Pill POSITION — driven by activeTheme so "system" slot is reached
-  const slideAnim = useRef(
-    new Animated.Value(MODES.indexOf(activeTheme)),
-  ).current;
+  const [slideAnim] = useState(
+    () => new Animated.Value(MODES.indexOf(activeTheme)),
+  );
 
   // Pill COLOR — driven by resolvedTheme (always light or dark)
-  const colorAnim = useRef(
-    new Animated.Value(resolvedTheme === "dark" ? 1 : 0),
-  ).current;
+  const [colorAnim] = useState(
+    () => new Animated.Value(resolvedTheme === "dark" ? 1 : 0),
+  );
 
   useEffect(() => {
     Animated.spring(slideAnim, {
